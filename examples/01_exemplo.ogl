@@ -1,0 +1,8 @@
+player heroi {
+    quando vi_inimigo, dano, dano -> recuar();
+    quando vida_baixa -> defender();
+}
+
+player guarda {
+    quando vi_inimigo -> atacar();
+}

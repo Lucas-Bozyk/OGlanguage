@@ -1,6 +1,6 @@
 # Linguagem Formal - OgLanguage `.log` ou LumeOg - `.ogl`
 
-A Lume seria uma linguagem de programação formal atuando como intermédio entre o programador e a máquina, traduzindo comando e direcionando fluxos de processos, com o objetivo final de traduzir a linguagem de programação em linguagem de máquina através de compiladores. Com a linguagem será possível: 
+A Lume seria uma linguagem de programação formal atuando como intermédio entre o programador e a máquina, descrevendo as ações de um player em um game, traduzindo comando e direcionando fluxos de processos, com o objetivo final de traduzir a linguagem de programação em linguagem de máquina através de compiladores. Com a linguagem será possível: 
 
 - Armazenar informações em variáveis (Símbolos);
 - Realizar operações matemáticas;

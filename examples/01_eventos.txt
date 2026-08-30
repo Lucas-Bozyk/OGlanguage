@@ -1,0 +1,4 @@
+vi_inimigo
+dano
+dano
+vida_baixa

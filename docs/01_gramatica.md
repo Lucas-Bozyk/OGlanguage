@@ -1,8 +1,8 @@
 # Gramática da OGLanguage
 
-A gramática da OGLanguage, escrita por extenso no primeiro módulo.
+A gramática OGLanguage iniciada no primeiro módulo.
 
-Esta é a forma de partida: ainda poderá conter estruturas que serão transformadas quando forem estudadas recursão à esquerda, fatoração e formas normais. O módulo de gramáticas livres de contexto deverá registrar cada transformação, mantendo a forma anterior ao lado da forma final.
+Esta é a forma em estado bruto, pode ter expressões que serão alteradas conforme estudo de fatoração e formas normais.
 
 ## Gramática hospedeira — a linguagem escrita pelo usuário
 

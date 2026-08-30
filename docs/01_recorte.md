@@ -1,6 +1,3 @@
-# O recorte da OGLanguage — decisões fixadas no primeiro módulo
-
-Registro das três decisões que a Tarefa 1 pede, na forma em que ficarão travadas para todo o percurso. Cada uma vem acompanhada da alternativa descartada, porque é a comparação que torna a decisão compreensível quando ela precisar ser revisitada.
 
 ## Que classe de ações o sistema aceita
 
@@ -16,24 +13,6 @@ Além de ações simples, a linguagem aceita repetição finita por meio de `rep
 
 **Decisão:** um programa é uma sequência de declarações `player`. Cada declaração associa um identificador a um bloco de comandos. Dentro desse bloco, os comandos são executados de cima para baixo e podem ser ações simples, repetições ou condições.
 
-Exemplo canônico:
-
-```oglanguage
-player heroi {
-    andar(direita);
-
-    se(obstaculo_proximo) {
-        pular();
-    }
-
-    repetir(2) {
-        atacar();
-    }
-
-    defender();
-    parar();
-}
-```
 
 A gramática completa está em `gramatica.md`. Palavras reservadas são escritas em letras minúsculas; ações simples terminam com ponto e vírgula; parênteses delimitam argumentos; chaves delimitam blocos; identificadores não podem conter espaços; e comentários de uma linha começam com `//`.
 

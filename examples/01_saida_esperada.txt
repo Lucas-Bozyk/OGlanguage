@@ -1,0 +1,3 @@
+evento 1: guarda.atacar
+evento 3: heroi.recuar
+evento 4: heroi.defender
