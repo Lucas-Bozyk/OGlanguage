@@ -71,14 +71,25 @@ g++ -std=c++11 -Wall -Wextra -Werror -pedantic docs/03_afdog.cpp -o 03_afdog.exe
 .\03_afdog.exe
 ```
 
-Sem argumentos, lê [03_eventos.txt](../examples/03_eventos.txt). Também aceita um caminho ou `-` para a entrada padrão:
+Sem argumentos, lê [03_eventos.txt](../examples/03_eventos.txt), que contém um exemplo de recusa: `solo_seco temperatura_alta temperatura_alta chuva`. O evento extra `chuva` leva de `q3` ao estado `erro`. Também aceita um caminho ou `-` para a entrada padrão:
 
 ```powershell
 .\03_afdog.exe examples/03_eventos.txt
 "solo_seco temperatura_alta temperatura_alta" | .\03_afdog.exe -
 ```
 
-A execução aceita deverá mostrar, depois do tamanho da tabela:
+A execução com `03_eventos.txt` deverá mostrar, depois do tamanho da tabela:
+
+```text
+Inicio: q0
+q0 -- solo_seco --> q1
+q1 -- temperatura_alta --> q2
+q2 -- temperatura_alta --> q3
+q3 -- chuva --> erro (evento fora da sequencia esperada)
+REJEITADA
+```
+
+O comando com entrada padrão acima fornece uma cadeia aceita e deverá mostrar, depois do tamanho da tabela:
 
 ```text
 Inicio: q0

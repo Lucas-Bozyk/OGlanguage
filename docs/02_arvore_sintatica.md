@@ -24,3 +24,4 @@ Na AST hospedeira, `equipamento estufa { quando solo_seco -> irrigar(norte); }` 
   (equipamento estufa
     (regra (simbolo solo_seco) (acao irrigar norte))))
 ```
+ 
