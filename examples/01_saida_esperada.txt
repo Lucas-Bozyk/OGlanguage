@@ -1,3 +1,3 @@
-evento 1: guarda.atacar
-evento 3: heroi.recuar
-evento 4: heroi.defender
+evento 1: colheitadeira.colher
+evento 4: estufa.irrigar(norte)
+evento 5: estufa.parar

@@ -1,8 +1,8 @@
-player heroi {
-    quando vi_inimigo, dano, dano -> recuar();
-    quando vida_baixa -> defender();
+equipamento estufa {
+    quando solo_seco, temperatura_alta, temperatura_alta -> irrigar(norte);
+    quando reservatorio_baixo -> parar();
 }
 
-player guarda {
-    quando vi_inimigo -> atacar();
+equipamento colheitadeira {
+    quando cultura_madura -> colher();
 }

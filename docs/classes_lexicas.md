@@ -3,21 +3,18 @@
 Cada linha abaixo apresenta o nome da classe léxica e uma definição resumida.
 
 ```text
-PALAVRA_RESERVADA — termo com significado fixo na linguagem: programa, var, inteiro, real, texto, logico, se, senao, enquanto, para, funcao, retorne, leia, escreva, verdadeiro e falso.
-IDENTIFICADOR — nome de variável, função ou programa; começa com letra ou `_` e continua com letras, dígitos ou `_`.
-NUMERO_INTEIRO — sequência de um ou mais dígitos decimais, sem parte fracionária.
-NUMERO_REAL — número decimal com parte inteira e fracionária separadas por ponto.
-CADEIA_TEXTO — sequência de caracteres delimitada por aspas duplas.
-CARACTERE — um caractere delimitado por aspas simples.
-OPERADOR_ARITMETICO — símbolo de operação matemática: `+`, `-`, `*`, `/` ou `%`.
-OPERADOR_RELACIONAL — símbolo de comparação: `==`, `!=`, `<`, `>`, `<=` ou `>=`.
-OPERADOR_LOGICO — símbolo de operação booleana: `&&`, `||` ou `!`.
-OPERADOR_ATRIBUICAO — símbolo `=` usado para atribuir um valor.
-DELIMITADOR — símbolo que organiza blocos ou expressões: `(`, `)`, `{`, `}`, `[`, `]`.
-SEPARADOR — símbolo que separa ou encerra elementos: `,`, `;`, `:` ou `.`.
+PALAVRA_RESERVADA — equipamento, quando, irrigar, pulverizar, ventilar, fechar, colher, recolher, parar, norte, sul, leste e oeste.
+IDENTIFICADOR — nome de equipamento ou evento; começa com letra ASCII e continua com letras ASCII, dígitos ou `_`.
+SETA — `->`, que associa um padrão a uma ação.
+CONCATENACAO — `,`, que exige eventos ou subpadrões em sequência.
+ALTERNANCIA — `|`, que oferece alternativas de padrões.
+ESTRELA — `*`, zero ou mais repetições do subpadrão anterior.
+MAIS — `+`, uma ou mais repetições do subpadrão anterior.
+OPCIONAL — `?`, zero ou uma ocorrência do subpadrão anterior.
+DELIMITADOR — `(`, `)`, `{` ou `}`; cada símbolo possui identidade própria para o parser.
+TERMINADOR — `;`, que encerra uma regra.
 COMENTARIO_LINHA — texto iniciado por `//` e encerrado na quebra de linha.
-COMENTARIO_BLOCO — texto iniciado por `/*` e encerrado por `*/`.
-ESPACO_EM_BRANCO — espaço, tabulação ou quebra de linha; ignorado fora de textos, exceto por separar tokens.
+ESPACO_EM_BRANCO — espaço, tabulação, retorno de carro ou quebra de linha; separa tokens e é descartado.
 FIM_DE_ARQUIVO — marca lógica que indica o término do código-fonte.
 ERRO_LEXICO — caractere ou sequência que não pertence a nenhuma classe léxica válida.
 ```
@@ -25,11 +22,13 @@ ERRO_LEXICO — caractere ou sequência que não pertence a nenhuma classe léxi
 ## Padrões iniciais
 
 ```text
-IDENTIFICADOR  = [A-Za-z_][A-Za-z0-9_]*
-NUMERO_INTEIRO = [0-9]+
-NUMERO_REAL    = [0-9]+\.[0-9]+
-CADEIA_TEXTO   = \"([^\"\\]|\\.)*\"
-CARACTERE      = '([^'\\]|\\.)'
+IDENTIFICADOR    = [A-Za-z][A-Za-z0-9_]*
+COMENTARIO_LINHA = //[^\r\n]*
+ESPACO_EM_BRANCO = [ \t\r\n]+
 ```
 
+O lexer deverá consumir o identificador completo e consultar a lista de palavras reservadas. Assim, `equipamento2` é um identificador, mas `equipamento` é palavra reservada. Maiúsculas e minúsculas são distintas.
 
+Os eventos, como `solo_seco`, são tokens `IDENTIFICADOR`; `EVENTO` na gramática indica seu uso dentro de um padrão. A análise semântica deverá verificar se pertencem ao alfabeto agrícola. Nomes de equipamento não podem ser palavras reservadas.
+
+Comentários também podem terminar no fim do arquivo. Comentários e espaços são descartados, preservando as posições dos demais tokens. Não há comentários de bloco, literais de texto ou número, nem operadores aritméticos. `_estufa`, `/` isolado e `=` são inválidos.

@@ -1,5 +1,3 @@
-cultura_madura
 solo_seco
 temperatura_alta
 temperatura_alta
-reservatorio_baixo

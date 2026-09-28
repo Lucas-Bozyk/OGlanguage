@@ -1,24 +1,18 @@
-# Alfabeto da OGLanguage
+# Alfabetos da OGLanguage
 
-O alfabeto da OGLanguage é o conjunto finito `Σ` de símbolos permitidos na escrita dos programas.
+O alfabeto de caracteres do fonte e o alfabeto de eventos dos reconhecedores são distintos.
 
-## Definição formal
+## Caracteres do fonte
+
+Fontes usam UTF-8. A sintaxe usa letras ASCII, dígitos, `_`, espaços, tabulações, quebras de linha e `{ } ( ) ; , - > | * + ? /`. Identificadores começam com letra. Acentos são permitidos apenas no conteúdo dos comentários `//`, que se estendem até a quebra de linha ou o fim do arquivo.
+
+`->` é um token composto; `-` e `>` isolados são inválidos. `/` só inicia comentário quando seguido de outro `/`. Textos, literais numéricos, atribuição e aritmética não pertencem ao recorte. Os dígitos podem compor identificadores, como `estufa2`.
+
+## Eventos agrícolas
 
 ```text
-Σ = L ∪ D ∪ S ∪ E
+Σ_eventos = { solo_seco, temperatura_alta, chuva,
+              reservatorio_baixo, obstaculo_detectado, cultura_madura }
 ```
 
-Onde:
-
-- `L = { A, B, ..., Z, a, b, ..., z, _, á, à, â, ã, é, ê, í, ó, ô, õ, ú, ç, Á, À, Â, Ã, É, Ê, Í, Ó, Ô, Õ, Ú, Ç }`
-- `D = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }`
-- `S = { +, -, *, /, %, =, !, <, >, &, |, \\, (, ), {, }, [, ], ,, ;, :, ., \" , ' }`
-- `E = { espaço, tabulação, quebra de linha, retorno de carro }`
-
-## Observações
-
-- Letras sem acento e o caractere `_` podem formar identificadores.
-- Letras acentuadas são permitidas em textos, comentários e palavras reservadas em português.
-- Espaços, tabulações e quebras de linha separam elementos léxicos, salvo dentro de textos.
-- Símbolos compostos, como `==`, `!=`, `<=`, `>=`, `&&` e `||`, são sequências formadas por elementos de `S`.
-- A codificação de referência dos arquivos-fonte é UTF-8.
+Cada nome representa um único símbolo do fluxo, independentemente de seu número de caracteres. Os padrões combinam esses símbolos para reconhecer sequências de acontecimentos. Leituras numéricas, limiares e origem física dos sensores são tratados fora da linguagem.

@@ -1,22 +1,7 @@
-# Linguagem Formal - OgLanguage `.log` ou LumeOg - `.ogl`
+# Descrição da OGLanguage
 
-A Lume seria uma linguagem de programação formal atuando como intermédio entre o programador e a máquina, descrevendo as ações de um player em um game, traduzindo comando e direcionando fluxos de processos, com o objetivo final de traduzir a linguagem de programação em linguagem de máquina através de compiladores. Com a linguagem será possível: 
+Linguagem formal de domínio específico para automação agrícola: descreve como equipamentos de estufas, irrigação e colheita reagem a padrões de eventos de sensores. O nome OGLanguage e a extensão `.ogl` são mantidos. Cada declaração `equipamento` associa um nome a regras `quando padrão -> ação`.
 
-- Armazenar informações em variáveis (Símbolos);
-- Realizar operações matemáticas;
-- Trabalhar com textos, números e valores lógicos;
-- Criar condições para tomar decisões;
-- Criar funções reutilizáveis;
-- Consultar APIs e bancos de dados;
-- Automatizar tarefas do cotidiano;
-- controlar fluxos;
-- representar algoritimos entre outros.
+O compilador previsto tokeniza o fonte, reconhece declarações, normaliza padrões, valida símbolos e produz reconhecedores e ações para uma máquina virtual. O produto inicial é uma linha do tempo de comandos, como irrigar um setor, ventilar uma estufa ou iniciar a colheita. A leitura física dos sensores e o acionamento das máquinas cabem a uma integração externa.
 
-O compilador traduz o código-fonte para uma representação que o computador consegue executar.:
-
-- **Análise léxica:** transforma caracteres em unidades chamadas tokens.
-- **Análise sintática:** verifica se os tokens seguem a gramática da linguagem.
-- **Análise semântica:** verifica tipos, declarações e significado das operações.
-- **Geração intermediária:** produz uma representação interna do programa.
-- **Otimização:** melhora desempenho, tamanho ou consumo de recursos.
-- **Geração de código:** produz código de máquina, bytecode ou outra saída executável.
+O projeto possui gramática, núcleo de expressões regulares, diagnósticos e exemplos de entrada e saída especificados. O [módulo 3](03_afdog.md) acrescenta um primeiro AFD manual em C++ para reconhecer uma sequência agrícola. O compilador, a geração automática dos autômatos e a máquina virtual ainda precisam ser implementados. Variáveis gerais, matemática, textos, funções, APIs e bancos de dados ficam fora do recorte.
