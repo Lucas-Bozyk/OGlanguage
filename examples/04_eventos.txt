@@ -1,0 +1,4 @@
+solo_seco
+temperatura_alta
+chuva
+reservatorio_baixo

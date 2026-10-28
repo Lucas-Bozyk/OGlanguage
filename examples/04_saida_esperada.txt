@@ -1,0 +1,11 @@
+Padrao: solo_seco,(temperatura_alta|chuva)*,reservatorio_baixo
+AST: (concat (concat (simbolo solo_seco) (estrela (alt (simbolo temperatura_alta) (simbolo chuva)))) (simbolo reservatorio_baixo))
+AFN: 12 estados, 14 transicoes (10 epsilon)
+Estado inicial: q0; F = {q11}
+Inicio: {q0}
+Apos solo_seco: {q1, q2, q4, q6, q8, q9, q10}
+Apos temperatura_alta: {q2, q3, q4, q6, q7, q9, q10}
+Apos chuva: {q2, q4, q5, q6, q7, q9, q10}
+Apos reservatorio_baixo: {q11}
+Maior conjunto ativo: 7
+ACEITA

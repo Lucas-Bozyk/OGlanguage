@@ -1,0 +1,84 @@
+# Formato: padrao<TAB>eventos separados por espaco<TAB>veredito.
+# Campo de eventos vazio representa a cadeia vazia. Resultados definidos a mao.
+# Simbolos: exatamente um evento, incluindo os seis eventos do alfabeto.
+solo_seco	solo_seco	ACEITA
+solo_seco		REJEITADA
+solo_seco	chuva	REJEITADA
+solo_seco	solo_seco solo_seco	REJEITADA
+temperatura_alta	temperatura_alta	ACEITA
+chuva	chuva	ACEITA
+reservatorio_baixo	reservatorio_baixo	ACEITA
+obstaculo_detectado	obstaculo_detectado	ACEITA
+cultura_madura	cultura_madura	ACEITA
+# Mesma sequencia exata do AFD do modulo 3.
+solo_seco,temperatura_alta,temperatura_alta	solo_seco temperatura_alta temperatura_alta	ACEITA
+solo_seco,temperatura_alta,temperatura_alta	solo_seco temperatura_alta	REJEITADA
+solo_seco,temperatura_alta,temperatura_alta	solo_seco temperatura_alta temperatura_alta chuva	REJEITADA
+solo_seco,temperatura_alta,temperatura_alta	chuva solo_seco temperatura_alta temperatura_alta	REJEITADA
+# Alternancia inicial e ramos com prefixo comum: nao basta escolher um ramo.
+chuva|solo_seco	chuva	ACEITA
+chuva|solo_seco	solo_seco	ACEITA
+chuva|solo_seco		REJEITADA
+solo_seco,chuva|solo_seco,temperatura_alta	solo_seco chuva	ACEITA
+solo_seco,chuva|solo_seco,temperatura_alta	solo_seco temperatura_alta	ACEITA
+solo_seco,chuva|solo_seco,temperatura_alta	solo_seco	REJEITADA
+# Estrela: zero, uma e varias repeticoes; nao pode consumir outro evento.
+chuva*		ACEITA
+chuva*	chuva	ACEITA
+chuva*	chuva chuva chuva	ACEITA
+chuva*	chuva solo_seco	REJEITADA
+chuva*,chuva	chuva	ACEITA
+chuva*,chuva	chuva chuva	ACEITA
+chuva*,chuva		REJEITADA
+# Mais e opcional exercitam as reducoes para o nucleo.
+chuva+		REJEITADA
+chuva+	chuva	ACEITA
+chuva+	chuva chuva	ACEITA
+chuva?		ACEITA
+chuva?	chuva	ACEITA
+chuva?	chuva chuva	REJEITADA
+chuva?,solo_seco	solo_seco	ACEITA
+chuva?,solo_seco	chuva solo_seco	ACEITA
+chuva?,solo_seco	chuva	REJEITADA
+# Ciclos apenas de epsilon: precisam terminar ate na entrada vazia.
+(chuva?)*		ACEITA
+(chuva?)*	chuva chuva	ACEITA
+(chuva*)*		ACEITA
+(chuva*)*	chuva chuva	ACEITA
+(chuva?)*	solo_seco chuva	REJEITADA
+# Precedencia, grupos e aninhamento.
+solo_seco|chuva,temperatura_alta	solo_seco	ACEITA
+solo_seco|chuva,temperatura_alta	chuva temperatura_alta	ACEITA
+solo_seco|chuva,temperatura_alta	solo_seco temperatura_alta	REJEITADA
+(solo_seco|chuva),temperatura_alta	solo_seco temperatura_alta	ACEITA
+solo_seco,((temperatura_alta|chuva)+,reservatorio_baixo)?	solo_seco	ACEITA
+solo_seco,((temperatura_alta|chuva)+,reservatorio_baixo)?	solo_seco chuva temperatura_alta reservatorio_baixo	ACEITA
+solo_seco,((temperatura_alta|chuva)+,reservatorio_baixo)?	solo_seco reservatorio_baixo	REJEITADA
+# Regra de irrigador da especificacao: inicio e fim obrigatorios, meio livre.
+solo_seco,(temperatura_alta|chuva)*,reservatorio_baixo	solo_seco reservatorio_baixo	ACEITA
+solo_seco,(temperatura_alta|chuva)*,reservatorio_baixo	solo_seco temperatura_alta chuva reservatorio_baixo	ACEITA
+solo_seco,(temperatura_alta|chuva)*,reservatorio_baixo	solo_seco chuva	REJEITADA
+solo_seco,(temperatura_alta|chuva)*,reservatorio_baixo	solo_seco reservatorio_baixo cultura_madura	REJEITADA
+# Vazio e absorvente: nem simbolo conhecido nem desconhecido reativa caminhos.
+chuva	geada chuva	REJEITADA
+chuva	solo_seco chuva	REJEITADA
+chuva*	geada	REJEITADA
+chuva	Chuva	REJEITADA
+# Separadores no padrao e comentario ate o fim.
+ ( chuva | solo_seco ) , temperatura_alta? 	chuva	ACEITA
+chuva // comentario	chuva	ACEITA
+# Padroes invalidos sao erros de entrada, separados da recusa de uma cadeia.
+		ERRO_PADRAO
+()		ERRO_PADRAO
+*chuva		ERRO_PADRAO
+chuva|		ERRO_PADRAO
+(chuva		ERRO_PADRAO
+chuva,,reservatorio_baixo		ERRO_PADRAO
+chuva**		ERRO_PADRAO
+chuva+?		ERRO_PADRAO
+chuva solo_seco		ERRO_PADRAO
+geada		ERRO_PADRAO
+Chuva		ERRO_PADRAO
+epsilon		ERRO_PADRAO
+chuva)		ERRO_PADRAO
+chuva$		ERRO_PADRAO
