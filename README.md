@@ -18,7 +18,6 @@ O relatório do caso canônico, da comparação entre as três máquinas e do ex
 .\Projeto\build\ogl.exe estudo
 ```
 
-As contas que o grupo deve fazer à mão estão descritas em [PASSO_A_PASSO_MANUAL.md](Projeto/PASSO_A_PASSO_MANUAL.md); registre desenhos e respostas em [REGISTROS_MANUAIS.md](Projeto/REGISTROS_MANUAIS.md).
 
 ## Linguagem do grupo
 
