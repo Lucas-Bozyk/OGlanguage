@@ -1,22 +1,32 @@
 # OGLanguage
 
-Linguagem formal para equipamentos agrícolas reagindo ao mesmo fluxo de eventos de sensores. Fontes usam `.ogl`.
+Linguagem formal de estudo para equipamentos agrícolas que reagem a eventos de sensores. A especificação da linguagem está em `docs/`; a etapa atual implementa os autômatos usados para reconhecer padrões.
 
-Cada `equipamento` possui regras `quando padrão -> ação`. O compilador previsto deverá ler padrões regulares e produzir reconhecedores executados por máquina virtual, emitindo comandos de irrigação, ventilação e colheita.
+## Módulos de autômatos
 
-## Determinismo
+A implementação C++20/CMake em [Projeto/](Projeto/README.md) cobre Thompson a partir de uma AST, simulação AFN, determinização e minimização por partições. O mapa [progress.md](progress.md) descreve a arquitetura, as decisões e o escopo concluído.
 
-Todos consomem o mesmo fluxo. Disparos simultâneos são ordenados pelo nome do equipamento e pela posição local da regra. Reordenar declarações não altera a linha do tempo. As regras completas estão em [01_recorte.md](../docs/01_recorte.md).
+Para executar a compilação e toda a bateria de verificações:
 
-## Exemplo
+```powershell
+powershell -File Projeto/verificar.ps1
+```
+
+O relatório do caso canônico, da comparação entre as três máquinas e do experimento de crescimento é:
+
+```powershell
+.\Projeto\build\ogl.exe estudo
+```
+
+As contas que o grupo deve fazer à mão estão descritas em [PASSO_A_PASSO_MANUAL.md](Projeto/PASSO_A_PASSO_MANUAL.md); registre desenhos e respostas em [REGISTROS_MANUAIS.md](Projeto/REGISTROS_MANUAIS.md).
+
+## Linguagem do grupo
+
+Cada equipamento tem regras `quando padrão -> ação`. Por exemplo:
 
 ```ogl
 equipamento estufa { quando solo_seco, temperatura_alta, temperatura_alta -> irrigar(norte); }
 equipamento colheitadeira { quando cultura_madura -> colher(); }
 ```
 
-## Estado atual e material de referência
-
-Os arquivos atuais em `docs/` e `examples/` definem a linguagem agrícola. O primeiro AFD manual está em [03_afdog.cpp](../docs/03_afdog.cpp), com explicação e comandos de compilação em [03_afdog.md](../docs/03_afdog.md). Ainda não há compilador da linguagem ou máquina virtual integrados.
-
-`Sources.md` indica o site da disciplina e `afd.cpp` contém o exemplo de referência. Esta pasta é ignorada pelo Git; a especificação vigente e a adaptação agrícola estão em `docs/`.
+Esta etapa não implementa ainda o parser de `.ogl`, a compilação das declarações nem a execução de ações por máquina virtual. Os exemplos e decisões do domínio estão em `docs/`.
