@@ -73,11 +73,6 @@ O comando `ogl estudo` mede o padrão construído em `main.cpp`: `(a|b)*a` segui
 
 Para `(a|b)*c`, a comparação percorreu todas as 121 cadeias de comprimento até 4: cada máquina aceitou as mesmas 15 e houve zero divergências. A tabela de crescimento registra exatamente as contagens impressas pelo programa nesta execução; pode ser reproduzida com `ogl estudo`.
 
-## Material manual e referências
-
-Antes de executar, siga [`PASSO_A_PASSO_MANUAL.md`](PASSO_A_PASSO_MANUAL.md) e preencha [`REGISTROS_MANUAIS.md`](REGISTROS_MANUAIS.md). A ficha mantém separados os vereditos calculados à mão e os resultados de conferência do programa.
-
-Referências: [guia do módulo 4](https://bcc-clfa-s.material.moacyr.pro.br/modulos/04/04_guia) e [material resumido do módulo 4](https://bcc-clfa-s.material.moacyr.pro.br/modulos/04/04_material_resumo). Os requisitos concretos de módulo 5 estão descritos em `Data/Sources.md`.
 
 ## Limites desta etapa
 
